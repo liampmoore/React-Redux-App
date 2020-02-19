@@ -30,10 +30,12 @@ function App() {
       <ResponsiveContext.Consumer>
         {size => (
           <Box fill>
+
             <AppBar justify='start'>
               <Button icon={<Menu />} onClick={() => { setShowSidebar(!showSidebar) }} />
               <Heading level='3' margin='none'>Search Unsplash</Heading>
             </AppBar>
+
             <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }}>
 
               <Collapsible direction={size !== 'small' ? "horizontal" : "vertical"} open={showSidebar}>
@@ -51,10 +53,11 @@ function App() {
               </Collapsible>
 
               <Box flex align='center' justify='center'>
-                App choices go here.
-         </Box>
+                Image searchbar component, and searchresults component goes here.
+              </Box>
 
             </Box>
+
           </Box>
         )}
       </ResponsiveContext.Consumer>
