@@ -1,9 +1,12 @@
 import React from 'react';
+import { Grommet } from 'grommet';
+import theme from './theme';
+
 
 
 function App() {
   return (
-    <div className="App">
+    <Grommet theme={theme}>
       <header className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </Grommet>
   );
 }
 
