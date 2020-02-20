@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Box, Image} from 'grommet';
 
+import {connect } from 'react-redux'
 
 
 const dummyData = ['https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga',]
@@ -17,19 +18,24 @@ return (
         justify='around'>
 
             
-            {dummyData.map((item, index) => {
+            {props.results.length && props.results.map((item, index) => {
                 return (
                     <Image
                         elevation='small'
                         margin={{vertical: 'small'}}
                         width={props.mobile ? '320px' : imageSize}
-                        src={item}
+                        src={item.largeImageURL}
+                        key={item.id}
                         alt={index}/>
                 )
-            })}
+            })
+            }
     </Box>
     )
 }
 
+const mapStateToProps = state => {
+    return {results: state.results}
+}
 
-export default SearchResults;
+export default connect(mapStateToProps)(SearchResults);

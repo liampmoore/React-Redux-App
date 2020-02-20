@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Button,
   Collapsible,
-  Heading,
   Grommet,
   ResponsiveContext,
 } from 'grommet';
@@ -13,12 +11,18 @@ import SearchResults from './components/searchResults';
 import MyImages from './components/myImages';
 import AppBar from './components/appBar'
 
+import { createStore, applyMiddleware } from "redux";
+import { resultsReducer as reducer } from "./reducers/searchReducer";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
+const store = createStore(reducer, applyMiddleware(thunk));
 
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
+    <Provider store={store}>
     <Grommet theme={theme} themeMode='dark' full>
       <ResponsiveContext.Consumer>
         {size => (
@@ -41,6 +45,7 @@ function App() {
         )}
       </ResponsiveContext.Consumer>
     </Grommet>
+    </Provider>
   );
 }
 
