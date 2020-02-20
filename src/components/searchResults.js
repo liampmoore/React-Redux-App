@@ -18,7 +18,7 @@ return (
         justify='around'>
 
             
-            {props.results.length && props.results.map((item, index) => {
+            {props.results.length > 0 ? props.results.map((item, index) => {
                 return (
                     <Image
                         elevation='small'
@@ -28,14 +28,16 @@ return (
                         key={item.id}
                         alt={index}/>
                 )
-            })
+            }) : <Box flex justify='center' align='center'>{props.error || 'Enter a search term above to find some images. Double click an image to add it to your list in the sidebar to the left.'}</Box>
+
             }
     </Box>
     )
 }
 
 const mapStateToProps = state => {
-    return {results: state.results}
+    return {results: state.results,
+    error: state.error}
 }
 
 export default connect(mapStateToProps)(SearchResults);

@@ -12,9 +12,10 @@ console.log("ACTION: FETCH_DATA")
     .then(res => {
       console.log(res);
       dispatch({ type: UPDATE_RESULTS, payload: res.data.hits });
+      res.data.hits.length === 0 && dispatch({type: SET_ERROR, payload: "Couldn't find any results for that."})
     })
     .catch(err => {
       console.error("error fetching data from api, err: ", err);
-      dispatch({ type: SET_ERROR, payload: "Error fetching data from api" });
+      dispatch({ type: SET_ERROR, payload: "There seems to be an issue with the server. Try again later." });
     });
 };

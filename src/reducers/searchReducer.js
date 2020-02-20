@@ -18,7 +18,8 @@ export const resultsReducer = (state = initialState, action) => {
       return {
         ...state,
         results: action.payload,
-        isFetchingData: false
+        isFetchingData: false,
+        error: null
       };
     case SET_ERROR:
       return {
