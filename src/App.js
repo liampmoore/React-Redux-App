@@ -10,6 +10,10 @@ import {
 import { Menu } from 'grommet-icons';
 import theme from './theme';
 
+import SearchResults from './components/searchResults';
+import MyImages from './components/myImages';
+
+
 const AppBar = (props) => (
   <Box
     tag='header'
@@ -37,25 +41,12 @@ function App() {
             </AppBar>
 
             <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }}>
-
-              <Collapsible direction={size !== 'small' ? "horizontal" : "vertical"} open={showSidebar}>
-                <Box
-                  flex
-                  width='medium'
-                  fill={size === 'small'}
-                  background='light-2'
-                  elevation='small'
-                  align='center'
-                  justify='center'
-                >
-                  My images go here.
-                </Box>
+              <Collapsible direction={size !== 'small' ? "horizontal" : "vertical"} open={showSidebar} >
+                <MyImages mobile={Boolean(size === 'small')} />
               </Collapsible>
-
-              <Box flex align='center' justify='center'>
-                Image searchbar component, and searchresults component goes here.
+              <Box flex align='center' justify='center' overflow={{ vertical: 'scroll' }}>
+                <SearchResults />
               </Box>
-
             </Box>
 
           </Box>
