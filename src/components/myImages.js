@@ -1,6 +1,8 @@
 import React from 'react';
-
 import {Box, Image, defaultProps} from 'grommet';
+
+import { connect } from 'react-redux';
+import {removeImage} from '../actions/myImagesActions';
 
 const dummyData = ['https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga']
 
@@ -21,11 +23,23 @@ return (
         justify='center'
         overflow={{vertical: 'scroll', horizontal: 'hidden'}}
         >
-            {dummyData.map((item, index) => {return (
-                    <Image key={index} src={item} width={props.mobile ? '320px':'240px'}/>
-                )})}
+            {  props.images.map((item, index) => {return (
+                    <Image style={{position: 'relative'}} key={item.id} src={item.webformatURL} width={props.mobile ? '320px':'240px'} onDoubleClick={() => props.removeImage(item.id)}/>
+                )}) }
+            
+            { ( props.images.length < 4 && dummyData.slice(0, 4 - props.images.length ).map((item, index) => {return (
+                    <Image style={{position: 'relative'}} key={index} src={item} width={props.mobile ? '320px':'240px'}/>
+                )})) }
+                
+                
     </Box>)
         
 }
 
-export default MyImages;
+const mapStateToProps = state => {
+    return {
+        images: state.myImagesReducer.images
+    }
+}
+
+export default connect(mapStateToProps)(MyImages);

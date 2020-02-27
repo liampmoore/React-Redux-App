@@ -3,7 +3,8 @@ import {Box, Image} from 'grommet';
 import BeatLoader from '@bit/davidhu2000.react-spinners.beat-loader';
 import { defaultProps } from 'grommet';
 
-import {connect } from 'react-redux'
+import {connect } from 'react-redux';   
+import {addImage} from '../actions/myImagesActions';
 
 
 
@@ -22,6 +23,7 @@ return (
             {props.results.length > 0 ? props.results.map((item, index) => {
                 return (
                     <Image
+                        onDoubleClick={() => props.addImage(item)}
                         elevation='small'
                         margin={{vertical: 'small'}}
                         width={props.mobile ? '320px' : imageSize}
@@ -45,4 +47,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SearchResults);
+export default connect(mapStateToProps, {addImage})(SearchResults);
