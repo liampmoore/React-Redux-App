@@ -32,7 +32,7 @@ function App() {
               
             </AppBar>
 
-            <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }}>
+            <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }} style={{position: 'relative'}}>
               <Collapsible direction={size !== 'small' ? "horizontal" : "vertical"} open={showSidebar} >
                 <MyImages mobile={Boolean(size === 'small')} />
               </Collapsible>
