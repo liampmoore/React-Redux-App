@@ -6,7 +6,7 @@ const initialState = {
   error: ""
 };
 
-export const resultsReducer = (state = initialState, action) => {
+export const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_DATA:
       return {

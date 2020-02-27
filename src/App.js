@@ -12,7 +12,7 @@ import MyImages from './components/myImages';
 import AppBar from './components/appBar'
 
 import { createStore, applyMiddleware } from "redux";
-import { resultsReducer as reducer } from "./reducers/searchReducer";
+import reducer from "./reducers";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
@@ -32,7 +32,7 @@ function App() {
               
             </AppBar>
 
-            <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }}>
+            <Box direction={size !== 'small' ? 'row' : 'column'} flex overflow={{ horizontal: 'hidden' }} style={{position: 'relative'}}>
               <Collapsible direction={size !== 'small' ? "horizontal" : "vertical"} open={showSidebar} >
                 <MyImages mobile={Boolean(size === 'small')} />
               </Collapsible>
