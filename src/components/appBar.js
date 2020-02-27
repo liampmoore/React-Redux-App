@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Box, Button, Text, Heading, Form, TextInput} from 'grommet';
 import { Menu } from 'grommet-icons';
 
@@ -9,9 +9,11 @@ import {getData} from '../actions/searchActions';
 
 const AppBar = ({showSidebar, setShowSidebar, mobile, isFetching, getData}) => {
     const [value, setValue] = useState('')
+    const [disableSearch, setDisableSearch]= useState(false);
 
-
-
+    useEffect(() => {
+      setDisableSearch(false)
+    }, [value])
 
 
    return ( <Box
@@ -30,7 +32,8 @@ const AppBar = ({showSidebar, setShowSidebar, mobile, isFetching, getData}) => {
               <Heading level='3' margin={{vertical: 'none', horizontal: 'none'}}>Search Pixabay</Heading>
             <Form id='searchform'
             onSubmit={() => {
-                getData(value)
+                 !disableSearch && getData(value)
+                 setDisableSearch(true)
             }}/>
             
               <TextInput
@@ -40,14 +43,14 @@ const AppBar = ({showSidebar, setShowSidebar, mobile, isFetching, getData}) => {
       onChange={event => setValue(event.target.value)}
 
     />
-    <Button disabled={isFetching} onClick={() => {getData(value)} } primary margin={{left: 'small'}}> <Text margin='medium'>Search</Text> </Button>
+    <Button onClick={() => {getData(value)} } primary margin={{left: 'small'}}> <Text margin='medium'>Search</Text> </Button>
     </Box>)
     
 }
 
 const mapStateToProps = state => {
     return {
-        isFetching: state.isFetchingData
+        isFetching: state.searchReducer.isFetchingData
     }
 }
 

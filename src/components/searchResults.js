@@ -8,6 +8,7 @@ import {connect } from 'react-redux'
 
 
 const SearchResults = (props) => {
+// Implement image size slider
 const [imageSize, setImageSize] = useState('400px')
 return (
     <Box
@@ -28,7 +29,7 @@ return (
                         key={item.id}
                         alt={index}/>
                 )
-            }) : <Box flex justify='center' align='center'>{props.error || props.isFetching && <BeatLoader size={32} color={defaultProps.theme.global.colors.focus} /> || 'Enter a search term above to find some images. Double click an image to add it to your list in the sidebar to the left.'}</Box>
+            }) : <Box flex justify='center' align='center'>{props.error || (props.isFetching && <BeatLoader size={32} color={defaultProps.theme.global.colors.focus} />) || 'Enter a search term above to find some images. Double click an image to add it to your list in the sidebar to the left.'}</Box>
 
             }
     </Box>
@@ -37,9 +38,9 @@ return (
 
 const mapStateToProps = state => {
     return {
-        results: state.results,
-        error: state.error,
-        isFetching: state.isFetchingData
+        results: state.searchReducer.results,
+        error: state.searchReducer.error,
+        isFetching: state.searchReducer.isFetchingData
 
     }
 }

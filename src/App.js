@@ -12,7 +12,7 @@ import MyImages from './components/myImages';
 import AppBar from './components/appBar'
 
 import { createStore, applyMiddleware } from "redux";
-import { resultsReducer as reducer } from "./reducers/searchReducer";
+import reducer from "./reducers";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
