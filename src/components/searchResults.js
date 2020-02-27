@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Box, Image} from 'grommet';
-import BeatLoader from '@bit/davidhu2000.react-spinners.beat-loader';
+import {BeatLoader} from 'react-spinners';
 import { defaultProps } from 'grommet';
 
 import {connect } from 'react-redux';   
