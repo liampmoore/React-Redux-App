@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Box, Image} from 'grommet';
+import BeatLoader from '@bit/davidhu2000.react-spinners.beat-loader';
+import { defaultProps } from 'grommet';
 
 import {connect } from 'react-redux'
 
-
-const dummyData = ['https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga','https://dummyimage.com/vga',]
 
 
 const SearchResults = (props) => {
@@ -28,7 +28,7 @@ return (
                         key={item.id}
                         alt={index}/>
                 )
-            }) : <Box flex justify='center' align='center'>{props.error || 'Enter a search term above to find some images. Double click an image to add it to your list in the sidebar to the left.'}</Box>
+            }) : <Box flex justify='center' align='center'>{props.error || props.isFetching && <BeatLoader size={32} color={defaultProps.theme.global.colors.focus} /> || 'Enter a search term above to find some images. Double click an image to add it to your list in the sidebar to the left.'}</Box>
 
             }
     </Box>
@@ -36,8 +36,12 @@ return (
 }
 
 const mapStateToProps = state => {
-    return {results: state.results,
-    error: state.error}
+    return {
+        results: state.results,
+        error: state.error,
+        isFetching: state.isFetchingData
+
+    }
 }
 
 export default connect(mapStateToProps)(SearchResults);
